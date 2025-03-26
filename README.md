@@ -9,7 +9,7 @@ An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias calle
  - [√] Count down timer
  - [√] Metronome
  - [√] Load other presets
- - [x] Create new presets without modifying code
+ - [-] Create new presets without modifying code
  - [√] Battery Volt. monitor
 
 ## Hardware
