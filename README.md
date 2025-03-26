@@ -39,9 +39,13 @@ Please use platformio to download.
 The default key setting should be:
 
 `BTN_1_PIN`: Ctrl+X
+
 `BTN_2_PIN`: Ctrl+C
+
 `BTN_3_PIN`: Ctrl+V
+
 `BTN_4_PIN`: N/A
+
 `BTN_5_PIN`: N/A
 
 - Press and hold `BTN_4_PIN` to enter metronome mode
