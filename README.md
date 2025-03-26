@@ -15,7 +15,9 @@ An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias calle
 ## Hardware
 
 This project uses ESP32-C3-mini-1 module, with 5 mechanical key shafts, 1 passive buzzer, and 1 indicator led.
+
 A 0.91 inch OLED display (128*32) is used for interface display.
+
 TP4056 module and 3.7V lithium battery are used for power supply.
 
 See below for specific pin settings:
