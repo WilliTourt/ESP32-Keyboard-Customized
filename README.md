@@ -1,5 +1,5 @@
 # ESP32-Keyboard-Customized
-An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias called "ESP32 Keybrick". Uses "Hid2Ble" library, [See here](https://github.com/BearLaboratory/Hid2Ble).
+An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias called "ESP32 Keybrick". Uses "Hid2Ble" library (This helps a lot it saved my time developing BLE funcs), [See here](https://github.com/BearLaboratory/Hid2Ble).
 
 ## Features
 
@@ -51,9 +51,10 @@ The default key setting should be:
 - Press and hold `BTN_4_PIN` to enter metronome mode
 - Press and hold `BTN_5_PIN` to enter the timer setting screen
 - Press and hold KEY4 and KEY5 at the same time to modify key mapping (presets)
+- 
 **Once in these modes, to return plz press and hold KEY5`BTN_5_PIN`**
 
-*The code is not robust enough, bugs exists. **Really appreciate it if you could suggest changes and offer code***
+*The code is not robust enough, bugs exists. **Really appreciate it if you could suggest changes and offer code.***
 
 *Known issue:*
 - *An extra keystroke is triggered abnormally when returning to the main mode*
