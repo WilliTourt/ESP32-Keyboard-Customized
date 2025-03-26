@@ -35,6 +35,8 @@ See below for specific pin settings:
 #define STATUS_LED      10
 ```
 
+* Keys should be set to pull-up mode. If you don't have external pull-up resistors, please change the pinMode of each key to 'INPUT_PULLUP' (in the KEY Init() function).*
+
 ## How to use
 
 Please use platformio to download.
