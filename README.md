@@ -5,11 +5,11 @@ An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias calle
 
  - [√] Send single key
  - [√] Send combo
- - [√] Send media key
+ - [?] Send media key
  - [√] Count down timer
  - [√] Metronome
  - [√] Load other presets
- - [-] Create new presets without modifying code
+ - [x] Create new presets without modifying code
  - [√] Battery Volt. monitor
 
 ## Hardware
