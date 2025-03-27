@@ -15,7 +15,7 @@ An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias calle
 
 5 presets are available now, based on the shortcut of the software I frequently used (Ctrl X/C/V; VSCode shortcuts; Commonly used system shortcuts; EDA software...). You can modify them in code to suit your needs.
 
-Presets location: sys.cpp 'KeyPreset presets[PRESET_COUNT]'.
+Presets location: sys.cpp `KeyPreset presets[PRESET_COUNT]`.
 
 ## Hardware
 
@@ -40,7 +40,7 @@ See below for specific pin settings:
 #define STATUS_LED      10
 ```
 
-*Keys should be set to pull-up mode. If you don't have external pull-up resistors, please change the pinMode of each key to 'INPUT_PULLUP' (in the KEY_Init() function).*
+*Keys should be set to pull-up mode. If you don't have external pull-up resistors, please change the pinMode of each key to `INPUT_PULLUP` (in the KEY_Init() function).*
 
 ## How to use
 
