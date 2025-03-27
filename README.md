@@ -13,7 +13,7 @@ An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias calle
  - [√] Battery monitoring and managing
  - [-] Reconnect automatically
 
-5 presets are available now, based on the shortcut of the software I frequently used. You can modify them in code to suit your needs.
+5 presets are available now, based on the shortcut of the software I frequently used (Ctrl X/C/V; VSCode shortcuts; Commonly used system shortcuts; EDA software...). You can modify them in code to suit your needs.
 
 Presets location: sys.cpp 'KeyPreset presets[PRESET_COUNT]'.
 
