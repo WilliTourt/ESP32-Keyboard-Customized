@@ -5,12 +5,17 @@ An multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias calle
 
  - [√] Send single key
  - [√] Send combo
- - [?] Send media key
+ - [-] Send media key
  - [√] Count down timer
  - [√] Metronome
  - [√] Load other presets
  - [-] Create new presets without modifying code
- - [√] Battery Volt. monitor
+ - [√] Battery monitoring and managing
+ - [-] Reconnect automatically
+
+5 presets are available now, based on the shortcut of the software I frequently used. You can modify them in code to suit your needs.
+
+Presets location: sys.cpp 'KeyPreset presets[PRESET_COUNT]'.
 
 ## Hardware
 
@@ -39,7 +44,7 @@ See below for specific pin settings:
 
 ## How to use
 
-Please use platformio to download.
+Please use platformio to open the folder and download programs. 
 The default key setting should be:
 
 `BTN_1_PIN`: Ctrl+X
@@ -58,8 +63,11 @@ The default key setting should be:
 
 **Once in these modes, to return plz press and hold KEY5`BTN_5_PIN`**
 
-*The code is not robust enough, bugs exists. **Really appreciate it if you could suggest changes and offer code.***
+---
+
+*The code is not robust enough, bugs exists. **Really appreciate it if you could suggest changes or offer code.***
 
 *Known issue:*
-- *An extra keystroke is triggered abnormally when returning to the main mode*
-- *Return to main mode when metronome is enabled, keystroke is unavailable*
+- *An extra keystroke is triggered abnormally when returning to the main mode, sometimes*
+- ~~*Return to main mode when metronome is enabled, keystroke is unavailable*~~ (fixed)
+- *Key-press logic is a little bit poor :(*
