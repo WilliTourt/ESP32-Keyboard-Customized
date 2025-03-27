@@ -54,15 +54,17 @@ KeyPreset presets[PRESET_COUNT] = {
         { "Alt+Tab", "Win+D", "Ctrl+Alt+Del", "Win+Shift+S", "N/A" }
     },
     {
+        //{ 0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+B
+        //{ 0x05, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+U
         {
-            { 0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+B
-            { 0x05, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+U
-            { 0x05, 0x00, 0x4C, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+[
-            { 0x0A, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+]
+            { 0x01, 0x00, 0x0E, 0x06, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+K+C
+            { 0x01, 0x00, 0x0E, 0x18, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+K+U
+            { 0x01, 0x00, 0x2F, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+[
+            { 0x01, 0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+]
             { 0x00 }                                            // Empty
         },
         "VSCode",
-        { "(PIO Build)", "(PIO Upload)", "(Left Align)", "(Right Align)", "N/A" }
+        { "(Comment)", "(Uncomment)", "(Left Align)", "(Right Align)", "N/A" }
     },
     {
         {
@@ -74,7 +76,7 @@ KeyPreset presets[PRESET_COUNT] = {
             { 0x04, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00 }  // Alt+B
         },
         "LCEDA Tools",
-        { "Alt+W (Wire)", "Alt+V (Via)", "Alt+E (Copper)", "Alt+T (Top)", "Alt+B (Bottom)" }
+        { "Alt+W(Wire)", "Alt+V(Via)", "Alt+E(Copper)", "Alt+T(Top)", "Alt+B(Bottom)" }
     },
 
 /*************************************************************************************************************/
@@ -86,7 +88,7 @@ KeyPreset presets[PRESET_COUNT] = {
             { 0x00, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Brightness Down (not working)
             { 0x00 }
         },
-        "Media Ctrls (N/A)!!",
+        "MediaCtrls(N/A)",
         { "Volume +", "Volume -", "Brightness +", "Brightness -", "N/A" } // This currently doesn't work...
     }
 };
