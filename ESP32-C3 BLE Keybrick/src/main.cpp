@@ -25,8 +25,6 @@ extern "C" {
 void OLED_Update();
 void OLED_ChkTimeout();
 void KEY_Send();
-void TIMER_Handle();
-void Beep();
 
 Hid2Ble keybrick("ESP32C3 BLE Keybrick", "WilliTourt", 100);
 

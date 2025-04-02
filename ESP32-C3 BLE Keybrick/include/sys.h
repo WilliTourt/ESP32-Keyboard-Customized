@@ -19,7 +19,7 @@ struct SystemStatus {
     unsigned long lastLedUpdate;
 };
 
-#define PRESET_COUNT 5
+#define PRESET_COUNT 6 // Add extra preset number here
 
 typedef struct {
     uint8_t keymap[5][8];
@@ -27,7 +27,7 @@ typedef struct {
     uint8_t keyDescription[5][16];
 } KeyPreset;
 
-extern KeyPreset presets[PRESET_COUNT];
+extern KeyPreset presets[PRESET_COUNT]; // Add preset in this array
 extern char media[5][2];
 extern uint8_t currentPreset;
 extern uint8_t scrollPos;
