@@ -20,7 +20,7 @@ A multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias called
  - [√] Battery monitoring and managing
  - [-] Reconnect automatically
 
-5 presets are available now, based on the shortcut of the software I frequently used (Ctrl X/C/V; VSCode shortcuts; Commonly used system shortcuts; EDA software...). You can modify them in code to suit your needs.
+5 presets are available now, based on the shortcut of the software I frequently used (Ctrl X/C/V/Z; VSCode shortcuts; Commonly used system shortcuts; EDA software...). You can modify them in code to suit your needs.
 
 Presets location: sys.cpp `KeyPreset presets[PRESET_COUNT]`.
 
@@ -49,26 +49,41 @@ See below for specific pin settings:
 
 *Keys should be set to pull-up mode. If you don't have external pull-up resistors, please change the pinMode of each key to `INPUT_PULLUP` (in the KEY_Init() function).*
 
+Schematic/PCB below:
+
+![屏幕截图 2025-04-05 232356](https://github.com/user-attachments/assets/71480a07-7f57-4377-85fe-d71db6520eea)
+
+![屏幕截图 2025-04-05 232511](https://github.com/user-attachments/assets/f91ffca2-36a5-414b-9cfa-0f3b87ed686d)
+![屏幕截图 2025-04-05 232523](https://github.com/user-attachments/assets/62a9f4f8-30b5-4eb6-bd6f-50cd437f1e75)
+
+
 ## How to use
 
 Please use platformio to open the folder and download programs. 
 The default key setting should be:
 
-`BTN_1_PIN`: Ctrl+X
+`BTN_1_PIN`: Ctrl+C
 
-`BTN_2_PIN`: Ctrl+C
+`BTN_2_PIN`: Ctrl+V
 
-`BTN_3_PIN`: Ctrl+V
+`BTN_3_PIN`: Ctrl+X
 
 `BTN_4_PIN`: N/A
 
-`BTN_5_PIN`: N/A
+`BTN_5_PIN`: Ctrl+Z
 
-- Press and hold `BTN_4_PIN` to enter metronome mode
-- Press and hold `BTN_5_PIN` to enter the timer setting screen
+- Press and hold KEY4`BTN_4_PIN` to enter metronome mode
+- Press and hold KEY5`BTN_5_PIN` to enter the timer setting screen
 - Press and hold KEY4 and KEY5 at the same time to modify key mapping (presets)
 
-**Once in these modes, to return plz press and hold KEY5`BTN_5_PIN`**
+**Once in these modes, to return plz press and hold `BTN_5_PIN`**
+
+## Notice
+
+- When welding OLED, insert about half of the pad without completely inserting it (inserting too much will cause a gap between the shell and the screen)
+- The pins of the mechanical key shaft and OLED should be cut short after welding so as not to bulge out, because the back needs to be welded with TP4056 and accommodate the lithium battery.
+- The type of lithium battery I bought is 652272, and this thickness can fit just into the area between the shell and the PCB. (≤6.5mm)
+- !!! For the TP4056 module: Solder the module directly to the pad area on the back of the PCB with a heat gun (like the parent board). It may be a little difficult to weld, it is recommended to weld the two pads at the input end first, then press the module with tweezers to weld the remaining four pads
 
 ---
 
