@@ -93,7 +93,7 @@ void TIMER_Set() {
     }
     if (keyState[3].isPressed) {
         timer.hours = 0;
-        timer.minutes = 0;
+        timer.minutes = 1;
         timer.enabled = false;
         delay(50);
     }
@@ -138,16 +138,26 @@ void METRONOME_Set() {
 
 void METRONOME_Handle() {
     static uint8_t beatCnt = 0; 
+    static uint8_t ledBlinkTime = 0;
+    static bool ledOn = false;
+
     if (metro.isRunning) {
         uint32_t currentTime = millis();
         if (currentTime >= metro.nextBeatTime) {
             bool isDownBeat = (beatCnt == 0);
             tone(BUZZER_PIN, isDownBeat ? 880 : 440, 50);
-            if (isDownBeat) { digitalWrite(STATUS_LED, HIGH); }
-            delay(50);
-            digitalWrite(STATUS_LED, LOW);
+            if (isDownBeat) {
+                digitalWrite(STATUS_LED, HIGH);
+                ledBlinkTime = millis();
+                ledOn = true;
+            }
+            // delay(50);   HOLY, @WoodBreeze found the timing bug!
             beatCnt = (beatCnt + 1) % metro.timeSig;
-            metro.nextBeatTime += 60000 / metro.bpm; 
+            metro.nextBeatTime += 60000 / metro.bpm;
+            if (ledOn && (currentTime - ledBlinkTime >= 50)) {
+                digitalWrite(STATUS_LED, LOW);
+                ledOn = false;
+            }
         }
     }
 }

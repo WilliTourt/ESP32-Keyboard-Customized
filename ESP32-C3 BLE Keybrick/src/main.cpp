@@ -57,7 +57,7 @@ void IRAM_ATTR KEY_Detect() {
         timerCnt++;
         if (timerCnt >= 100) {
             uint32_t now = millis();
-            if (now >= timer.targetSec) {
+            if (now >= (timer.targetSec - 1)) {
                 timerTriggered = true;
                 timer.enabled = false;
             }
@@ -164,15 +164,15 @@ void loop() {
 void KEY_Send() {
     for (int i = 0; i < 5; i++) {
         if (keyState[i].shouldSend && !keyState[i].isReleased) {
-            if (currentPreset == 4) {
-                switch (i) {
-                    case 0: keybrick.sendMedia2Ble(media[0]); break;
-                    case 1: keybrick.sendMedia2Ble(media[1]); break;
-                    case 2: keybrick.sendMedia2Ble(media[2]); break;
-                    case 3: keybrick.sendMedia2Ble(media[3]); break;
-                    case 4: keybrick.sendMedia2Ble(media[4]); break;
-                }
-            } else {
+            // if (currentPreset == 4) { // MediaCtrl
+            //     switch (i) {
+            //         case 0: keybrick.sendMedia2Ble(media[0]); break;
+            //         case 1: keybrick.sendMedia2Ble(media[1]); break;
+            //         case 2: keybrick.sendMedia2Ble(media[2]); break;
+            //         case 3: keybrick.sendMedia2Ble(media[3]); break;
+            //         case 4: keybrick.sendMedia2Ble(media[4]); break;
+            //     }
+            // } else {
                 switch (i) {
                     case 0: keybrick.send2Ble(k1Buf); break;
                     case 1: keybrick.send2Ble(k2Buf); break;
@@ -180,7 +180,7 @@ void KEY_Send() {
                     case 3: keybrick.send2Ble(k4Buf); break;
                     case 4: keybrick.send2Ble(k5Buf); break;
                 }
-            }
+            // }
             keyState[i].isReleased = true;
             keyState[i].shouldSend = false;
         }
