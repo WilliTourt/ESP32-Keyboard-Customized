@@ -70,7 +70,7 @@ The default key setting should be:
 
 `BTN_4_PIN`: N/A
 
-`BTN_5_PIN`: Ctrl+Z
+`BTN_5_PIN`: N/A
 
 - Press and hold KEY4`BTN_4_PIN` to enter metronome mode
 - Press and hold KEY5`BTN_5_PIN` to enter the timer setting screen
@@ -93,3 +93,6 @@ The default key setting should be:
 - *An extra keystroke is triggered abnormally when returning to the main mode, sometimes*
 - ~~*Return to main mode when metronome is enabled, keystroke is unavailable*~~ (fixed)
 - *Key-press logic is a little bit poor :(*
+
+## Credit
+Credit to *WoodBreeze*, my bro, for helping me finding bugs :)
