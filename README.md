@@ -51,7 +51,7 @@ See below for specific pin settings:
 
 Schematic/PCB below:
 
-![屏幕截图 2025-04-05 232356](https://github.com/user-attachments/assets/71480a07-7f57-4377-85fe-d71db6520eea)
+<img width="1873" height="1323" alt="屏幕截图 2025-07-23 103347" src="https://github.com/user-attachments/assets/b504fdc1-eff4-463b-aabf-3dd12def60f8" />
 
 ![屏幕截图 2025-04-05 232511](https://github.com/user-attachments/assets/f91ffca2-36a5-414b-9cfa-0f3b87ed686d)
 ![屏幕截图 2025-04-05 232523](https://github.com/user-attachments/assets/62a9f4f8-30b5-4eb6-bd6f-50cd437f1e75)
