@@ -19,7 +19,7 @@ struct SystemStatus {
     unsigned long lastLedUpdate;
 };
 
-#define PRESET_COUNT 6 // Add extra preset number here
+#define PRESET_COUNT 7 // Add extra preset number here
 
 typedef struct {
     uint8_t keymap[5][8];
