@@ -1,40 +1,58 @@
-# ESP32-Keyboard-Customized
-A multi-functional ESP32-C3 keyboard with 5 customizable keys, with alias called "ESP32 Keybrick". Uses "Hid2Ble" library (This helps a lot it saved my time developing BLE funcs), [See here](https://github.com/BearLaboratory/Hid2Ble).
+# ESP32 Keybrick
 
----
+> Language: [English](README.md) | [简体中文](readme-zh-CN.md)
 
-![IMG_20250328_122641](https://github.com/user-attachments/assets/f8192b05-58b5-45bf-b381-eb0c5d716f49)
+A multi-functional ESP32-C3 Bluetooth keyboard named **ESP32 Keybrick**. It provides five customizable mechanical keys and can send keystrokes, key combinations, and media-control commands to computers or other devices that support BLE HID.
 
-![IMG_20250402_112802 )](https://github.com/user-attachments/assets/0e681c89-e31d-418d-b1d1-de1a4afd016d)
----
+This project uses the [Hid2Ble](https://github.com/BearLaboratory/Hid2Ble) library. Thanks to the project for making BLE HID functionality easier to implement.
+
+![ESP32 Keybrick internal](https://github.com/user-attachments/assets/f8192b05-58b5-45bf-b381-eb0c5d716f49)
+
+![ESP32 Keybrick](https://github.com/user-attachments/assets/0e681c89-e31d-418d-b1d1-de1a4afd016d)
 
 ## Features
 
- - [√] Send single key
- - [√] Send combo
- - [-] Send media key
- - [√] Count down timer
- - [√] Metronome
- - [√] Load other presets
- - [-] Create new presets without modifying code
- - [√] Battery monitoring and managing
- - [-] Reconnect automatically
+- [√] Send a single key
+- [√] Send key combinations
+- [√] Send media-control keys
+- [√] Countdown timer
+- [√] Metronome
+- [√] Switch between multiple key presets
+- [√] Battery monitoring, low-battery notification, and BLE connection status indication
+- [-] Create new key presets online without modifying the code
+- [-] Automatic reconnection
 
-5 presets are available now, based on the shortcut of the software I frequently used (Ctrl X/C/V/Z; VSCode shortcuts; Commonly used system shortcuts; EDA software...). You can modify them in code to suit your needs.
+Seven presets are currently built in:
 
-Presets location: sys.cpp `KeyPreset presets[PRESET_COUNT]`.
+1. `Ctrl XCVZ`: Ctrl+X, Ctrl+C, Ctrl+V, Ctrl+Z, Ctrl+Shift+Z
+2. `Win Combos`: Alt+Tab, Win+D, Ctrl+Alt+Del, Win+Shift+S, empty
+3. `VSCode`: Toggle comment, Tab, Shift+Tab, Quick Open, Command Palette
+4. `LCEDA Tools`: Wire, Via, Copper, Top Copper, Bottom Copper
+5. `SW Drawing`: Line, Circle, Rectangle, Smart Dimension, Normal To
+6. `Tabs`: Five Tab keys
+7. `MediaCtrls`: Brightness Down, Brightness Up, Volume Down, Volume Up, Play/Pause
+
+To modify the presets, edit `KeyPreset presets[PRESET_COUNT]` in `ESP32-C3 BLE Keybrick/src/sys.cpp`. The code must currently be modified and recompiled; creating entirely new presets online is not supported.
+
+You can refer to the existing presets when editing. For HID key values, consult the HID Usage Tables documentation available online.
+
+You can modify `PRESET_COUNT` to increase or decrease the number of presets. The current number of presets is 7.
 
 ## Hardware
 
-This project uses ESP32-C3-mini-1 module, with 5 mechanical key shafts, 1 passive buzzer, and 1 indicator led.
+Main hardware:
 
-A 0.91 inch OLED display (128*32) is used for interface display.
+- ESP32-C3-MINI-1 module
+- 5 mechanical key switches
+- 1 passive buzzer
+- 1 status LED
+- 0.91-inch 128×32 OLED display
+- TP4056 lithium-battery charging module
+- 3.7 V lithium battery
 
-TP4056 module and 3.7V lithium battery are used for power supply.
+Pin definitions:
 
-See below for specific pin settings:
-```
-// Pin definitions
+```cpp
 #define ADC_PIN         A0
 #define BUZZER_PIN      1
 #define BTN_1_PIN       2
@@ -47,52 +65,95 @@ See below for specific pin settings:
 #define STATUS_LED      10
 ```
 
-*Keys should be set to pull-up mode. If you don't have external pull-up resistors, please change the pinMode of each key to `INPUT_PULLUP` (in the KEY_Init() function).*
+*The key inputs are currently configured as `INPUT` in `KEY_Init()`, so external pull-up resistors are required. If you do not have external pull-up resistors, change the input mode of all five keys to `INPUT_PULLUP` and verify the key-level logic according to your wiring.*
 
-Schematic/PCB below:
+Schematic and PCB:
 
-<img width="1873" height="1323" alt="屏幕截图 2025-07-23 103347" src="https://github.com/user-attachments/assets/b504fdc1-eff4-463b-aabf-3dd12def60f8" />
+<img alt="Schematic" src="https://github.com/user-attachments/assets/b504fdc1-eff4-463b-aabf-3dd12def60f8" />
 
-![屏幕截图 2025-04-05 232511](https://github.com/user-attachments/assets/f91ffca2-36a5-414b-9cfa-0f3b87ed686d)
-![屏幕截图 2025-04-05 232523](https://github.com/user-attachments/assets/62a9f4f8-30b5-4eb6-bd6f-50cd437f1e75)
+![PCB view](https://github.com/user-attachments/assets/f91ffca2-36a5-414b-9cfa-0f3b87ed686d)
 
+![PCB view](https://github.com/user-attachments/assets/62a9f4f8-30b5-4eb6-bd6f-50cd437f1e75)
 
-## How to use
+## Build and Upload
 
-Please use platformio to open the folder and download programs. 
-The default key setting should be:
+1. Install [PlatformIO](https://platformio.org/) (the PlatformIO extension for VS Code is recommended).
+2. Open the `ESP32-C3 BLE Keybrick` folder in PlatformIO.
+3. Select the `esp32-c3-devkitm-1` environment.
+4. Build and upload the program.
 
-`BTN_1_PIN`: Ctrl+C
+The project uses the Arduino framework. See `ESP32-C3 BLE Keybrick/platformio.ini` for the configuration.
 
-`BTN_2_PIN`: Ctrl+V
+## Usage
 
-`BTN_3_PIN`: Ctrl+X
+The default preset on first startup is `Ctrl XCVZ`:
 
-`BTN_4_PIN`: N/A
+| Key | Default function |
+| --- | --- |
+| BTN1 | Ctrl+X |
+| BTN2 | Ctrl+C |
+| BTN3 | Ctrl+V |
+| BTN4 | Ctrl+Z |
+| BTN5 | Ctrl+Shift+Z |
 
-`BTN_5_PIN`: N/A
+The device advertises over BLE as `ESP32C3 BLE Keybrick`. Search for and connect to it in the Bluetooth settings of your computer or other host.
 
-- Press and hold KEY4`BTN_4_PIN` to enter metronome mode
-- Press and hold KEY5`BTN_5_PIN` to enter the timer setting screen
-- Press and hold KEY4 and KEY5 at the same time to modify key mapping (presets)
+### Mode switching
 
-**Once in these modes, to return plz press and hold `BTN_5_PIN`**
+- Press and hold BTN4 to enter metronome mode.
+- Press and hold BTN5 to enter countdown-timer setup mode. Press and hold BTN5 in countdown or any other function mode to return to normal mode.
+- Press and hold BTN4 and BTN5 simultaneously to enter preset-selection mode.
 
-## Notice
+### Countdown-timer setup
 
-- When welding OLED, insert about half of the pad without completely inserting it (inserting too much will cause a gap between the shell and the screen)
-- The pins of the mechanical key shaft and OLED should be cut short after welding so as not to bulge out, because the back needs to be welded with TP4056 and accommodate the lithium battery.
-- The type of lithium battery I bought is 652272, and this thickness can fit just into the area between the shell and the PCB. (≤6.5mm)
-- !!! For the TP4056 module: Solder the module directly to the pad area on the back of the PCB with a heat gun (like the parent board). It may be a little difficult to weld, it is recommended to weld the two pads at the input end first, then press the module with tweezers to weld the remaining four pads
+After entering countdown-timer setup mode:
 
----
+- BTN1: Adjust hours
+- BTN2: Adjust minutes
+- BTN3: Enable/start the countdown
+- BTN4: Reset
+- BTN5: Return to normal mode
 
-*The code is not robust enough, bugs exists. **Really appreciate it if you could suggest changes or offer code.***
+### Metronome setup
 
-*Known issue:*
-- *An extra keystroke is triggered abnormally when returning to the main mode, sometimes*
-- ~~*Return to main mode when metronome is enabled, keystroke is unavailable*~~ (fixed)
-- *Key-press logic is a little bit poor :(*
+After entering metronome mode:
 
-## Credit
-Credit to *WoodBreeze*, my bro, for helping me finding bugs :)
+- BTN1: Decrease BPM
+- BTN2: Increase BPM
+- BTN3: Change the time signature
+- BTN4: Start/stop the metronome
+
+### Preset selection
+
+After pressing and holding BTN4 and BTN5 simultaneously to enter preset-selection mode:
+
+- BTN1: Select the previous preset
+- BTN2: Select the next preset
+- BTN3: Confirm and apply the current preset
+
+After confirmation, the current preset is saved to the ESP32's on-chip EEPROM and will still be used after the device is restarted.
+
+## Structure and Resources
+
+- `ESP32-C3 BLE Keybrick/`: PlatformIO source-code folder
+- `BOM_ESP32 Keybrick.xlsx`: Bill of materials
+- `ESP32 BLE Keyboard v1.2f shell.stl`: Case model
+- `ESP32 BLE Keyboard v1.2f cover.stl`: Case cover
+- `ESP32-C3 BLE Keyboard v1.2.zip`: GERBER files
+
+## Assembly Notes
+
+- When soldering the OLED, do not insert it all the way. Inserting only part of the pad length is recommended; otherwise, the case and screen may interfere with each other.
+- After soldering the mechanical key switches and OLED, cut the pins short to prevent them from protruding. The back of the PCB also needs to accommodate the TP4056 module and lithium battery.
+- A 652272 lithium battery is recommended. Its thickness should not exceed approximately 5.5 mm so it can fit in the space between the case and PCB.
+- The TP4056 module must be soldered directly to the pad area on the back of the PCB. It is recommended to solder the two pads on the input side first, then hold the module down with tweezers while soldering the remaining four pads.
+
+## Known Issues
+
+- ~~*An extra keystroke is sometimes triggered when returning to normal mode*~~ (fixed)
+- ~~*Keys become unavailable when returning to normal mode from metronome mode*~~ (fixed)
+
+## Credits
+
+- Thanks to [BearLaboratory/Hid2Ble](https://github.com/BearLaboratory/Hid2Ble) for the BLE HID library.
+- Thanks to WoodBreeze for helping with early testing :)
