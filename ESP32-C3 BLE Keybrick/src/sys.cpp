@@ -33,40 +33,36 @@ Byte 7 Key 6
 KeyPreset presets[PRESET_COUNT] = {
     {
         {
+            { 0x01, 0x00, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+X
             { 0x01, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+C
             { 0x01, 0x00, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+V
-            { 0x01, 0x00, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+X
-            { 0x00 },                                           // Empty
-            { 0x00 }                                            // Empty
-            // { 0x01, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00 }  // Ctrl+Z
+            { 0x01, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Z
+            { 0x03, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00 }  // Ctrl+Shift+Z
         },
-        "Ctrl CVX",
-        { "Ctrl+C", "Ctrl+V", "Ctrl+X", "N/A", "N/A" }
+        "Ctrl XCVZ",
+        { "Ctrl+X", "Ctrl+C", "Ctrl+V", "Ctrl+Z", "Ctrl+Shift+Z" }
     },
     {
         {
             { 0x04, 0x00, 0x2B, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Alt+Tab
             { 0x08, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Win+D
             { 0x05, 0x00, 0x4C, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+Del
-            // { 0x0A, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Win+Shift+S
-            { 0x00 },                                           // Empty
+            { 0x0A, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Win+Shift+S
             { 0x00 }                                            // Empty
         },
         "Win Combos",
         { "Alt+Tab", "Win+D", "Ctrl+Alt+Del", "N/A", "N/A" }
     },
     {
-        //{ 0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+B
-        //{ 0x05, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+Alt+U
         {
-            { 0x01, 0x00, 0x0E, 0x06, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+K+C
-            { 0x01, 0x00, 0x0E, 0x18, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+K+U
-            { 0x01, 0x00, 0x2F, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+[
-            { 0x01, 0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+]
-            { 0x00 }                                            // Empty
+            { 0x01, 0x00, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+/
+            { 0x00, 0x00, 0x2B, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Tab
+            { 0x02, 0x00, 0x2B, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Shift+Tab
+            { 0x01, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Ctrl+P
+            { 0x03, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00 }  // Ctrl+Shift+P
         },
         "VSCode",
-        { "(Comment)", "(Uncomment)", "(Left Align)", "(Right Align)", "N/A" }
+        { "Comment", "Tab", "Shift+Tab", "Quick Open", "Command Palette" }
     },
     {
         {
@@ -82,11 +78,11 @@ KeyPreset presets[PRESET_COUNT] = {
     },
     {
         {
-            { 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00 }, // L - 直线
-            { 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00 }, // C - 圆
-            { 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00 }, // R - 矩形
-            { 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00 }, // S - 智能尺寸
-            { 0x01, 0x00, 0x25, 0x00, 0x00, 0x00, 0x00, 0x00 }  // Ctrl+8 - 正视于
+            { 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00 }, // L
+            { 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00 }, // C
+            { 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00 }, // R
+            { 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00 }, // S
+            { 0x01, 0x00, 0x25, 0x00, 0x00, 0x00, 0x00, 0x00 }  // Ctrl+8
         },
         "SW Drawing",
         { "Line", "Circle", "Rectangle", "Smart Dim", "Normal to" }
@@ -100,31 +96,33 @@ KeyPreset presets[PRESET_COUNT] = {
             { 0x00, 0x00, 0x2B, 0x00, 0x00, 0x00, 0x00, 0x00 },
             { 0x00, 0x00, 0x2B, 0x00, 0x00, 0x00, 0x00, 0x00 }
         },
-        "Tab.b.b.b.b. (?",
+        "Tabs",
         { "Tab", "Tab", "Tab", "Tab", "Tab" }
     },
 
 /*************************************************************************************************************/
     {
         {
-            { 0x00, 0x00, 0xE9, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Volume Up
-            { 0x00, 0x00, 0xEA, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Volume Down
-            { 0x00, 0x00, 0x6F, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Brightness Up   (not working)
-            { 0x00, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00 }, // Brightness Down (not working)
-            { 0x00 }
+            { 0x00 }, // Media report is sent separately (currentPreset == 6)
+            { 0x00 },
+            { 0x00 },
+            { 0x00 },
+            { 0x00 },
         },
-        "MediaCtrls(N/A)",
-        { "Volume +", "Volume -", "Brightness +", "Brightness -", "N/A" } // This currently doesn't work...
+        "MediaCtrls",
+        { "Brightness -", "Brightness +", "Volume -", "Volume +", "Play/Pause" }
     }
 };
 
-char media[5][2] { // Unavailable :(
-    { 0x02, 0x00 }, // Volume Up
-    { 0x03, 0x00 }, // Volume Down
-    { 0x00, 0x10 }, // 
-    { 0x00, 0x80 }, // 
-    { 0x00, 0x00 }  // 
+char media[5][2] { // Consumer-control report bit masks
+    { 0x00, 0x01 }, // Brightness Down
+    { 0x80, 0x00 }, // Brightness Up
+    { 0x40, 0x00 }, // Volume Down
+    { 0x20, 0x00 }, // Volume Up
+    { 0x08, 0x00 }  // Play/Pause
 };
+
+char mediaRelease[2] { 0x00, 0x00 };
 
 uint8_t currentPreset = 0;
 uint8_t scrollPos = 0;
@@ -141,6 +139,10 @@ bool active = false;
   */
 void SYS_ModeSwitch() {
     if (k5LongPressed && !keyState[3].isPressed) {
+        // Suppress the pending normal key event for key 5. It was held for
+        // mode switching and must not be sent after the key is released.
+        keyState[4].shouldSend = false;
+        keyState[4].isReleased = true;
         if (currentMode == MODE_NORMAL) {
             currentMode = MODE_TIMER_SET;
         } else if ( (currentMode == MODE_TIMER_SET) ||
@@ -151,6 +153,9 @@ void SYS_ModeSwitch() {
         k5LongPressed = false;
         k5PressStartTime = 0;
     } else if (k4LongPressed && !keyState[4].isPressed) {
+        // Suppress the pending normal key event for key 4.
+        keyState[3].shouldSend = false;
+        keyState[3].isReleased = true;
         if (currentMode == MODE_NORMAL) {
             currentMode = MODE_METRONOME;
         };
@@ -158,6 +163,11 @@ void SYS_ModeSwitch() {
         k4PressStartTime = 0;
     }
     if (k4LongPressed && k5LongPressed) {
+        // Suppress both normal key events when entering key configuration.
+        keyState[3].shouldSend = false;
+        keyState[3].isReleased = true;
+        keyState[4].shouldSend = false;
+        keyState[4].isReleased = true;
         currentMode = MODE_KEY_CONFIG;
         k4LongPressed = false;
         k5LongPressed = false;
@@ -191,6 +201,10 @@ void SYS_ModeSwitch() {
     if( keyState[2].isPressed ) {
         SYS_ConfirmPreset(currentPreset);
         SYS_ApplyPreset(currentPreset);
+        // The confirm key must not become a normal key press when we leave
+        // config mode. Keep it suppressed until the physical key is released.
+        keyState[2].shouldSend = false;
+        keyState[2].isReleased = true;
         delay(500);
         currentMode = MODE_NORMAL;
     }

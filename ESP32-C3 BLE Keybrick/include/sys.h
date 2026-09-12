@@ -29,6 +29,7 @@ typedef struct {
 
 extern KeyPreset presets[PRESET_COUNT]; // Add preset in this array
 extern char media[5][2];
+extern char mediaRelease[2];
 extern uint8_t currentPreset;
 extern uint8_t scrollPos;
 

@@ -1,4 +1,7 @@
 {
+    "platformio-ide.useBuiltinPIOCore": false,
+    "platformio-ide.customPATH": "C:\\Users\\WilliTourt\\AppData\\Roaming\\Python\\Python312\\Scripts;C:\\Users\\WilliTourt\\AppData\\Local\\Programs\\Python\\Python312;C:\\Windows\\System32;C:\\Windows",
+    "platformio-ide.useBuiltinPython": false,
     "files.associations": {
         "sstream": "c",
         "array": "c",

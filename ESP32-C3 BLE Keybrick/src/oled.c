@@ -91,9 +91,11 @@ void OLED_Clear() {
   * @retval None 
   */
 void OLED_ClearPart(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
-    uint8_t i, j;
+    uint8_t i;
+    uint16_t j;
     for (i = y1; i < y2; i++) {
         OLED_SetCursor(x1, i);
+        // Use a wider counter: x2 may be 128, which overflows uint8_t.
         for (j = x1; j < x2; j++) {
             OLED_WriteData(0x00);
         }

@@ -164,15 +164,15 @@ void loop() {
 void KEY_Send() {
     for (int i = 0; i < 5; i++) {
         if (keyState[i].shouldSend && !keyState[i].isReleased) {
-            // if (currentPreset == 4) { // MediaCtrl
-            //     switch (i) {
-            //         case 0: keybrick.sendMedia2Ble(media[0]); break;
-            //         case 1: keybrick.sendMedia2Ble(media[1]); break;
-            //         case 2: keybrick.sendMedia2Ble(media[2]); break;
-            //         case 3: keybrick.sendMedia2Ble(media[3]); break;
-            //         case 4: keybrick.sendMedia2Ble(media[4]); break;
-            //     }
-            // } else {
+
+            // Key 4/5 are also used for long-press mode switching. Wait until release
+            if ((i == 3 || i == 4) && keyState[i].isPressed) {
+                continue;
+            }
+
+            if (currentPreset == 6) { // MediaCtrls
+                keybrick.sendMedia2Ble(media[i]);
+            } else {
                 switch (i) {
                     case 0: keybrick.send2Ble(k1Buf); break;
                     case 1: keybrick.send2Ble(k2Buf); break;
@@ -180,13 +180,17 @@ void KEY_Send() {
                     case 3: keybrick.send2Ble(k4Buf); break;
                     case 4: keybrick.send2Ble(k5Buf); break;
                 }
-            // }
+            }
             keyState[i].isReleased = true;
             keyState[i].shouldSend = false;
         }
     }
     if (sendRelease) {
-        keybrick.send2Ble(release);
+        if (currentPreset == 6) {
+            keybrick.sendMedia2Ble(mediaRelease);
+        } else {
+            keybrick.send2Ble(release);
+        }
         sendRelease = false;
     }
 }
@@ -234,14 +238,20 @@ void OLED_Update() {
 
             static uint32_t lastScroll = 0;
             if (scrollPos < 5) {
-                char keydesc[24];
-                sprintf(keydesc, "Key%d: %s", scrollPos + 1, presets[currentPreset].keyDescription[scrollPos]);
+                // Padding the line with spaces overwrites the previous text without
+                // clearing the display, which avoids visible flicker.
+                char keydesc[22];
+                snprintf(keydesc, sizeof(keydesc), "Key%d: %s", scrollPos + 1,
+                         presets[currentPreset].keyDescription[scrollPos]);
+                for (size_t i = strlen(keydesc); i < 21; i++) {
+                    keydesc[i] = ' ';
+                }
+                keydesc[21] = '\0';
                 OLED_PrintText(0, 2, keydesc, 8);
             }
             if (millis() - lastScroll > 2000) {
                 scrollPos = (scrollPos + 1) % 5;
                 lastScroll = millis();
-                OLED_ClearPart(18, 2, 128, 4);
             }
             break;
         case MODE_TIMER_SET:
@@ -280,16 +290,24 @@ void OLED_Update() {
             OLED_PrintText(0, 1, " Tag:", 8);
             OLED_PrintText(36, 1, (const char*)presets[currentPreset].name, 8);
             for (int i = 0; i < 2; i++) {
+                char line[22];
                 if (scrollPos + i < 5) {
-                    char line[24];
-                    sprintf(line, "- Key%d: %s", (scrollPos + i + 1), presets[currentPreset].keyDescription[scrollPos + i]);
-                    OLED_PrintText(0, 2 + i, line, 8);
+                    snprintf(line, sizeof(line), "- Key%d: %s", (scrollPos + i + 1),
+                             presets[currentPreset].keyDescription[scrollPos + i]);
+                } else {
+                    line[0] = '\0';
                 }
+                // Keep every preview row exactly 21 characters wide. Spaces
+                // erase any leftover characters from the previous row.
+                for (size_t j = strlen(line); j < 21; j++) {
+                    line[j] = ' ';
+                }
+                line[21] = '\0';
+                OLED_PrintText(0, 2 + i, line, 8);
             }
             if (millis() - lastScroll_cfg > 2000) {
                 scrollPos = (scrollPos + 1) % 4;
                 lastScroll_cfg = millis();
-                OLED_ClearPart(12, 2, 128, 4);
             }
 
             char presetInfo[8];
