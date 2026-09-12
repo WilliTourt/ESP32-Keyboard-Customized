@@ -1,7 +1,16 @@
 
 /*******************************************************
- * ESP32-C3 BLE Keybrick
+ * ESP32-C3 BLE Keybrick v1.2
  * Copyright (c) 2025 WilliTourt 2944925833@qq.com
+ * 
+ * CHANGELOG: 
+ * - 2025.03 V1.0   Initial release
+ * 
+ * - 2025.04 V1.1   Display bugfix, changed battery params
+ * 
+ * - 2026.09 V1.2   Improvements: - MediaCtrl preset now works!
+ *                                - fixed display clear problem
+ *                                - fixed spurious triggering when new key config enables or quitting alarm or metronome
 *******************************************************/
 
 #include <Arduino.h>
